@@ -3,11 +3,16 @@
 // REQUIRES: executable_test
 //
 // Enable this everywhere once we have a solution for modularizing libstdc++: rdar://87654514
-// REQUIRES: OS=macosx
+// REQUIRES: OS=macosx || OS=linux-gnu
 
 import StdlibUnittest
 import StdVector
+#if os(Linux)
+import std
+// FIXME: import std.vector once libstdc++ is split into submodules.
+#else
 import std.vector
+#endif
 
 var StdVectorTestSuite = TestSuite("StdVector")
 
