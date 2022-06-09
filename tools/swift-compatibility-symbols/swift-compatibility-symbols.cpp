@@ -53,7 +53,7 @@ int main(int argc, char *argv[]) {
 
   llvm::SmallVector<llvm::StringRef, 40> symbols;
 #define CLANG_MACRO_DEFINED(NAME) \
-  symbols.push_back(#NAME);
+  symbols.push_back(NAME);
 
 #define CLANG_MACRO(NAME, ARGS, VALUE) \
   CLANG_MACRO_DEFINED(NAME)

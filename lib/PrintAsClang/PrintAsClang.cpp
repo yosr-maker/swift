@@ -134,31 +134,31 @@ static void writePrologue(raw_ostream &out, ASTContext &ctx,
          "\n";
 
 #define CLANG_MACRO_BODY(NAME, BODY) \
-  out << "#if !defined(" #NAME ")\n" \
+  out << "#if !defined(" NAME ")\n" \
          BODY "\n" \
          "#endif\n";
 
-#define CLANG_MACRO(NAME, ARGS, VALUE) CLANG_MACRO_BODY(NAME, "# define " #NAME #ARGS " " #VALUE)
+#define CLANG_MACRO(NAME, ARGS, VALUE) CLANG_MACRO_BODY(NAME, "# define " NAME ARGS " " VALUE)
 
 #define CLANG_MACRO_ALTERNATIVE(NAME, ARGS, CONDITION, VALUE, ALTERNATIVE) CLANG_MACRO_BODY(NAME, \
-  "# if " #CONDITION "\n" \
-  "#  define " #NAME #ARGS " " #VALUE "\n" \
+  "# if " CONDITION "\n" \
+  "#  define " NAME ARGS " " VALUE "\n" \
   "# else\n" \
-  "#  define " #NAME #ARGS " " #ALTERNATIVE "\n" \
+  "#  define " NAME ARGS " " ALTERNATIVE "\n" \
   "# endif")
 
 #define CLANG_MACRO_OBJC(NAME, ARGS, VALUE) \
   out << "#if defined(__OBJC__)\n" \
-         "#if !defined(" #NAME ")\n" \
-         "# define " #NAME #ARGS " " #VALUE "\n" \
+         "#if !defined(" NAME ")\n" \
+         "# define " NAME ARGS " " VALUE "\n" \
          "#endif\n" \
          "#endif\n";
 
 #define CLANG_MACRO_CXX(NAME, ARGS, VALUE, ALTERNATIVE) \
   out << "#if defined(__cplusplus)\n" \
-         "# define " #NAME #ARGS " " #VALUE "\n" \
+         "# define " NAME ARGS " " VALUE "\n" \
          "#else\n" \
-         "# define " #NAME #ARGS " " #ALTERNATIVE "\n" \
+         "# define " NAME ARGS " " ALTERNATIVE "\n" \
          "#endif\n";
 
 #define CLANG_MACRO_CXX_BODY(NAME, BODY) \
