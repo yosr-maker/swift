@@ -149,7 +149,9 @@ static void writePrologue(raw_ostream &out, ASTContext &ctx,
 
 #define CLANG_MACRO_OBJC(NAME, ARGS, VALUE) \
   out << "#if defined(__OBJC__)\n" \
+         "#if !defined(" #NAME ")\n" \
          "# define " #NAME #ARGS " " #VALUE "\n" \
+         "#endif\n" \
          "#endif\n";
 
 #define CLANG_MACRO_CXX(NAME, ARGS, VALUE, ALTERNATIVE) \
