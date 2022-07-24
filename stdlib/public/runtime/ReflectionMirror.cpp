@@ -25,7 +25,7 @@
 #include "swift/Runtime/Portability.h"
 #include "Private.h"
 #include "WeakReference.h"
-#include "../SwiftShims/Reflection.h"
+#include "swift/shims/Reflection.h"
 #include <cassert>
 #include <cinttypes>
 #include <cstdio>
