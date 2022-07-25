@@ -482,6 +482,13 @@ Fun fact: Rust has a very similar concept called
 including one called `Send`,
 which inspired the design of `Sendable`.
 
+## `@_nodoc`
+
+Indicates that a declaration should not be included in symbol graphs. Symbols
+marked with this attribute are treated as if they were given an underscored
+name, meaning they are still included in a symbol graph with a "minimum access
+level" of `internal` or lower.
+
 ## `@_nonEphemeral`
 
 Marks a function parameter that cannot accept a temporary pointer produced from
