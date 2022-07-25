@@ -489,6 +489,9 @@ marked with this attribute are treated as if they were given an underscored
 name, meaning they are still included in a symbol graph with a "minimum access
 level" of `internal` or lower.
 
+This attribute can also be attached to `@_exported import` statements to prevent
+symbols imported with this statement from appearing in symbol graphs.
+
 ## `@_nonEphemeral`
 
 Marks a function parameter that cannot accept a temporary pointer produced from

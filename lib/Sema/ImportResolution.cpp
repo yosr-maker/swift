@@ -530,6 +530,9 @@ UnboundImport::UnboundImport(ImportDecl *ID)
   if (ID->isExported())
     import.options |= ImportFlags::Exported;
 
+  if (ID->getAttrs().hasAttribute<NoDocAttr>())
+    import.options |= ImportFlags::NoDoc;
+
   if (ID->getAttrs().hasAttribute<TestableAttr>())
     import.options |= ImportFlags::Testable;
 
@@ -981,6 +984,11 @@ UnboundImport::UnboundImport(
   if (declaringOptions.contains(ImportFlags::Exported) &&
       bystandingOptions.contains(ImportFlags::Exported))
     import.options |= ImportFlags::Exported;
+
+  // If both are @_nodoc, the cross-import is @_nodoc.
+  if (declaringOptions.contains(ImportFlags::NoDoc) &&
+      bystandingOptions.contains(ImportFlags::NoDoc))
+    import.options |= ImportFlags::NoDoc;
 
   // If either are implementation-only, the cross-import is
   // implementation-only.

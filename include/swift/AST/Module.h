@@ -951,7 +951,8 @@ inline SourceLoc extractNearestSourceLoc(const ModuleDecl *mod) {
 /// Collects modules that this module imports via `@_exported import`.
 void collectParsedExportedImports(const ModuleDecl *M,
                                   SmallPtrSetImpl<ModuleDecl *> &Imports,
-                                  llvm::SmallDenseMap<ModuleDecl *, SmallPtrSet<Decl *, 4>, 4> &QualifiedImports);
+                                  llvm::SmallDenseMap<ModuleDecl *, SmallPtrSet<Decl *, 4>, 4> &QualifiedImports,
+                                  bool DropNoDoc = false);
 
 } // end namespace swift
 

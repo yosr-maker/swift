@@ -60,7 +60,8 @@ symbolgraphgen::emitSymbolGraphForModule(ModuleDecl *M,
   
   SmallPtrSet<ModuleDecl *, 4> ExportedImportedModules;
   llvm::SmallDenseMap<ModuleDecl *, SmallPtrSet<Decl *, 4>, 4> QualifiedImports;
-  swift::collectParsedExportedImports(M, ExportedImportedModules, QualifiedImports);
+  bool DropNoDoc = Options.MinimumAccessLevel > AccessLevel::Internal;
+  swift::collectParsedExportedImports(M, ExportedImportedModules, QualifiedImports, DropNoDoc);
 
   if (Options.PrintMessages)
     llvm::errs() << ModuleDecls.size()

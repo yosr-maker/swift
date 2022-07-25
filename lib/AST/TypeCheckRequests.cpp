@@ -1459,6 +1459,8 @@ void swift::simple_display(llvm::raw_ostream &out,
 
   if (import.options.contains(ImportFlags::Exported))
     out << " exported";
+  if (import.options.contains(ImportFlags::NoDoc))
+    out << " nodoc";
   if (import.options.contains(ImportFlags::Testable))
     out << " testable";
   if (import.options.contains(ImportFlags::ImplementationOnly))

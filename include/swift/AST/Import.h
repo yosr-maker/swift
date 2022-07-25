@@ -84,6 +84,10 @@ enum class ImportFlags {
   /// concurrency.
   Preconcurrency = 0x20,
 
+  /// The module is being exported, but its contents should not appear in a
+  /// symbol graph.
+  NoDoc = 0x40,
+
   /// Used for DenseMap.
   Reserved = 0x80
 };
