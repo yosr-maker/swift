@@ -627,6 +627,13 @@ bool SymbolGraph::isImplicitlyPrivate(const Decl *D,
 
     // Special cases below.
 
+    // Symbols from exported-imported modules should only be included if they
+    // were originally public.
+    if (Walker.isFromExportedImportedModule(D) &&
+        VD->getFormalAccess() < AccessLevel::Public) {
+      return true;
+    }
+
     auto BaseName = VD->getBaseName().userFacingName();
 
     // ${MODULE}Version{Number,String} in ${Module}.h
